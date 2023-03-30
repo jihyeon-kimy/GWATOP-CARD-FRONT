@@ -50,8 +50,13 @@ const GlobalStyle = createGlobalStyle`
     html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
     background-color: ${color.greenLight};
     font-family: 'Pretendard',sans-serif;
+    }
+
+    #root{
+    height: 100%;
     }
 
     * {
