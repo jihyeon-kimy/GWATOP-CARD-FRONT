@@ -9,6 +9,7 @@ interface cardProps {
   onClick: () => void;
   className?: string;
   hoverAction?: boolean;
+  frontElclassName?: string;
 }
 
 const CardDeck: React.FC<cardProps> = ({
@@ -17,11 +18,12 @@ const CardDeck: React.FC<cardProps> = ({
   onClick,
   className,
   hoverAction,
+  frontElclassName,
 }) => {
   return (
     <CardDeckContainer onClick={onClick} className={className}>
       <BackDrop />
-      <CardDeckEl hoverAction={hoverAction || false}>
+      <CardDeckEl hoverAction={hoverAction || false} className={frontElclassName}>
         <img src={image} alt="카드덱 대표이미지" />
         <CardTitle>{title}</CardTitle>
       </CardDeckEl>
@@ -33,7 +35,7 @@ export default CardDeck;
 
 const CardDeckContainer = styled.div`
   position: relative;
-  cursor: pointer;
+
   border-radius: 10px;
 `;
 
@@ -42,7 +44,6 @@ const BackDrop = styled.div`
   height: 240px;
   background-color: ${color.yellow};
   border-radius: 10px;
-  cursor: pointer;
 `;
 
 const CardDeckEl = styled.div<{ hoverAction: boolean }>`
@@ -51,10 +52,12 @@ const CardDeckEl = styled.div<{ hoverAction: boolean }>`
   width: 160px;
   height: 240px;
   border-radius: 10px;
+  cursor: pointer;
   filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.1));
   transition: transform 200ms ease-in-out;
 
   img {
+    display: block;
     width: 100%;
     height: 100%;
     border-radius: 10px;
