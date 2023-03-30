@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import CardListPage from "./pages/CardListPage";
+import CardDeckListPage from "./pages/CardDeckListPage";
 import CreateCardPage from "./pages/CreateCardPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
-import SearchPage from "./pages/SearchPage";
+import ViewPage from "./pages/ViewPage";
 
 interface RouterElement {
   id: number;
@@ -11,6 +11,7 @@ interface RouterElement {
   label: string;
   element: React.ReactNode;
   onNav?: boolean;
+  icon?: string;
 }
 
 export const routerData: RouterElement[] = [
@@ -20,6 +21,7 @@ export const routerData: RouterElement[] = [
     label: "Home",
     element: <HomePage />,
     onNav: true,
+    icon: "./assets/Icons/Home.png",
   },
   {
     id: 1,
@@ -27,13 +29,15 @@ export const routerData: RouterElement[] = [
     label: "카드생성",
     element: <CreateCardPage />,
     onNav: true,
+    icon: "./assets/Icons/Create.png",
   },
   {
     id: 2,
-    path: "/cardList",
+    path: "/cardDeckList",
     label: "MY카드덱",
-    element: <CardListPage />,
+    element: <CardDeckListPage />,
     onNav: true,
+    icon: "./assets/Icons/Deck.png",
   },
   {
     id: 3,
@@ -43,9 +47,9 @@ export const routerData: RouterElement[] = [
   },
   {
     id: 4,
-    path: "/search",
+    path: "/view",
     label: "카드조회",
-    element: <SearchPage />,
+    element: <ViewPage />,
   },
 ];
 
@@ -64,6 +68,7 @@ export const navList: RouterElement[] = routerData.reduce((prev, router) => {
         path: router.path,
         label: router.label,
         element: router.element,
+        icon: router.icon,
       },
     ];
 
