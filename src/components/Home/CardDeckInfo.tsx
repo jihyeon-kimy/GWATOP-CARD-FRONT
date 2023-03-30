@@ -25,7 +25,7 @@ const CardDeckInfo = () => {
             key={cardDeck.id}
             title={cardDeck.title}
             image={cardDeck.image}
-            onClick={() => routeTo("/cardList")}
+            onClick={() => routeTo("/cardDeckList")}
             hoverAction={true}
           />
         ))}
