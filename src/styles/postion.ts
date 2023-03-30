@@ -38,12 +38,12 @@ export const posCenterX = (obj: positionType) => css`
 export const posCenterY = (obj: positionType) => css`
   position: ${obj?.type ?? "absolute"};
   top: 50%;
-  transform: translateX(-50%);
+  transform: translateY(-50%);
 `;
 
 export const posCenterCenter = (obj: positionType) => css`
   position: ${obj?.type ?? "absolute"};
   top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 `;
