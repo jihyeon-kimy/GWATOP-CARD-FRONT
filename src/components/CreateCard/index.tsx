@@ -76,7 +76,7 @@ const CreateCardContainer = styled.div`
   }
 
   .button-class {
-    ${posCenterX({})}
+    ${posCenterX()}
     margin-top:39px;
   }
 `;
@@ -97,7 +97,7 @@ const Header = styled.div`
   }
 
   p {
-    ${text.textStyle20()};
+    ${text.textStyle20(500)};
     margin-top: 14px;
     color: ${color.primary};
   }

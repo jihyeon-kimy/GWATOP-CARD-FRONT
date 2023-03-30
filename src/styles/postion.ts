@@ -25,24 +25,20 @@ export const flexBox = (obj: flexBoxProps) => css`
   align-items: ${obj?.alignItem ?? "center"};
 `;
 
-interface positionType {
-  type?: string;
-}
-
-export const posCenterX = (obj: positionType) => css`
-  position: ${obj?.type ?? "absolute"};
+export const posCenterX = (type: string = "absolute") => css`
+  position: ${type};
   left: 50%;
   transform: translateX(-50%);
 `;
 
-export const posCenterY = (obj: positionType) => css`
-  position: ${obj?.type ?? "absolute"};
+export const posCenterY = (type: string = "absolute") => css`
+  position: ${type};
   top: 50%;
   transform: translateY(-50%);
 `;
 
-export const posCenterCenter = (obj: positionType) => css`
-  position: ${obj?.type ?? "absolute"};
+export const posCenterCenter = (type: string = "absolute") => css`
+  position: ${type};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
