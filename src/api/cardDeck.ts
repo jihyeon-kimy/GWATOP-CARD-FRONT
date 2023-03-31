@@ -10,11 +10,9 @@ export const customAxios = axios.create({
 });
 
 export const uploadPDF = async (formData: FormData) => {
-  return await axios.post(
-    `${BASE_URL}/quiz/card/upload/`,
-    { formData },
-    { headers: { "Content-Type": "multipart/form-data" } }
-  );
+  return await axios.post(`${BASE_URL}/quiz/card/upload/`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 };
 
 export const getCardDeckList = async () => {
