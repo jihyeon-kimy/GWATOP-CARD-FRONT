@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
+import Authorization from "./components/Layout/Authorization";
 import CardDeckListPage from "./pages/CardDeckListPage";
 import CreateCardPage from "./pages/CreateCardPage";
 import HomePage from "./pages/HomePage";
+import LogInPage from "./pages/LogInPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignUpPage from "./pages/SignUpPage";
 import ViewPage from "./pages/ViewPage";
 
 interface RouterElement {
@@ -12,6 +15,7 @@ interface RouterElement {
   element: React.ReactNode;
   onNav?: boolean;
   icon?: string;
+  withAuthorization?: boolean;
 }
 
 export const routerData: RouterElement[] = [
@@ -30,6 +34,7 @@ export const routerData: RouterElement[] = [
     element: <CreateCardPage />,
     onNav: true,
     icon: "./assets/Icons/Create.png",
+    withAuthorization: true,
   },
   {
     id: 2,
@@ -38,24 +43,49 @@ export const routerData: RouterElement[] = [
     element: <CardDeckListPage />,
     onNav: true,
     icon: "./assets/Icons/Deck.png",
+    withAuthorization: true,
   },
   {
     id: 3,
     path: "/profile",
     label: "프로필",
     element: <ProfilePage />,
+    withAuthorization: true,
   },
   {
     id: 4,
     path: "/view",
     label: "카드조회",
     element: <ViewPage />,
+    withAuthorization: true,
+  },
+  {
+    id: 5,
+    path: "/signUp",
+    label: "회원가입",
+    element: <SignUpPage />,
+  },
+  {
+    id: 6,
+    path: "/logIn",
+    label: "로그인",
+    element: <LogInPage />,
   },
 ];
 
 export const routers = createBrowserRouter(
   routerData.map((router) => {
-    return { path: router.path, element: router.element };
+    if (router.withAuthorization) {
+      return {
+        path: router.path,
+        element: <Authorization>{router.element}</Authorization>,
+      };
+    } else {
+      return {
+        path: router.path,
+        element: router.element,
+      };
+    }
   })
 );
 
