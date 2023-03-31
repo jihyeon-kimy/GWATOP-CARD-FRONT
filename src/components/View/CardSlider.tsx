@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import color from "../../styles/color";
 import { flexBox } from "../../styles/postion";
@@ -8,25 +9,50 @@ import Card from "../Common/Card";
 interface cardSliderProps {
   cardList: card[];
   currentNum: number;
-  onPrevCard: () => void;
-  onNextCard: () => void;
-  animation: string;
+  setAnswerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentCardNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CardSlider: React.FC<cardSliderProps> = ({
   cardList,
   currentNum,
-  onPrevCard,
-  onNextCard,
-  animation,
+  setAnswerVisible,
+  setCurrentCardNumber,
 }) => {
+  const [animation, setAnimation] = useState("");
+  const lastCardNum = cardList.length - 1;
+
+  const handlePrveCard = () => {
+    setAnswerVisible(false);
+    setCurrentCardNumber((prev) => {
+      if (prev >= 1) return prev - 1;
+      return lastCardNum;
+    });
+    setAnimation("prev");
+  };
+
+  const handleNexteCard = () => {
+    setAnswerVisible(false);
+    setCurrentCardNumber((prev) => {
+      if (prev < lastCardNum) return prev + 1;
+      return 0;
+    });
+    setAnimation("next");
+  };
+
   return (
     <CardSliderContainer>
       <Card className="coverd-card-class">
-        <img src="./assets/Images/image-cap.png" alt="카드 기본 이미지" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap.png`}
+          alt="카드 기본 이미지"
+        />
       </Card>
-      <ArrowButton type="button" onClick={onPrevCard}>
-        <img src="./assets/Icons/Prev.png" alt="이전 카드 보기" />
+      <ArrowButton type="button" onClick={handlePrveCard}>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Icons/Prev.png`}
+          alt="이전 카드 보기"
+        />
       </ArrowButton>
       <Card className="current-card-class" key={currentNum} animation={animation}>
         <div>
@@ -40,14 +66,20 @@ const CardSlider: React.FC<cardSliderProps> = ({
           </ul>
         </div>
         <QuestionNum>
-          {currentNum}/<b>{cardList.length}</b>
+          {currentNum + 1}/<b>{cardList.length}</b>
         </QuestionNum>
       </Card>
-      <ArrowButton type="button" onClick={onNextCard}>
-        <img src="./assets/Icons/Next.png" alt="다음 카드 보기" />
+      <ArrowButton type="button" onClick={handleNexteCard}>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Icons/Next.png`}
+          alt="다음 카드 보기"
+        />
       </ArrowButton>
       <Card className="coverd-card-class">
-        <img src="./assets/Images/image-cap.png" alt="카드 기본 이미지" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap.png`}
+          alt="카드 기본 이미지"
+        />
       </Card>
     </CardSliderContainer>
   );

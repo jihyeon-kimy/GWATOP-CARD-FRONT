@@ -6,25 +6,25 @@ import Card from "../Common/Card";
 import CardDeck from "../Common/CardDeck";
 
 interface cardDeckDesc {
-  cardDeckName: string;
+  cardDeckname: string;
+  cardDeckimg: string;
   totalNum: number;
 }
 
-const CardDeckDesc: React.FC<cardDeckDesc> = ({ cardDeckName, totalNum }) => {
+const CardDeckDesc: React.FC<cardDeckDesc> = ({
+  cardDeckname,
+  cardDeckimg,
+  totalNum,
+}) => {
   return (
     <CardDeckDescContainer>
-      <CardDeck
-        className="card-deck-class"
-        title={cardDeckName}
-        image="./assets/Images/image-card-1.jpg"
-        onClick={() => {}}
-      />
+      <CardDeck className="card-deck-class" title={cardDeckname} image={cardDeckimg} />
       <Card className="card-class">
         <ul>
           <li>
             해당 카드덱은 총 <span>{totalNum}개</span>의 카드로 구성되어있습니다.
           </li>
-          <li>주제: {cardDeckName}</li>
+          <li>주제: {cardDeckname}</li>
         </ul>
       </Card>
     </CardDeckDescContainer>

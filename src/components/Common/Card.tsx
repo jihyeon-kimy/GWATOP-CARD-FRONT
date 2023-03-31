@@ -63,7 +63,7 @@ const CardContainer = styled.div<{ animation?: string }>`
     props.animation === "prev" &&
     css`
       div {
-        animation: ${slideInRight} 600ms ease-in-out;
+        animation: ${slideInLeft} 600ms ease-in-out;
       }
     `}
 
@@ -71,7 +71,7 @@ const CardContainer = styled.div<{ animation?: string }>`
     props.animation === "next" &&
     css`
       div {
-        animation: ${slideInLeft} 600ms ease-in-out;
+        animation: ${slideInRight} 600ms ease-in-out;
       }
     `}
 `;

@@ -6,7 +6,7 @@ import text from "../../styles/text";
 interface cardProps {
   title: string;
   image: string;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   hoverAction?: boolean;
   frontElclassName?: string;

@@ -1,46 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { SAMPLE } from "../../mock/sample";
+import { getCardList } from "../../api/cardDeck";
 import { flexBox } from "../../styles/postion";
+import { card } from "../../types/card";
 import CardAnswer from "./CardAnswer";
 import CardDeckDesc from "./CardDeckDesc";
 import CardSlider from "./CardSlider";
 
-const cardList = Object.values(SAMPLE.card_deck);
+interface cardDeckInfoEl {
+  name: string;
+  img: string;
+}
 
 const View = () => {
-  const [currentCardNumber, setCurrentCardNumber] = useState(1);
+  const { cardDeckId } = useParams();
+  const [cardDeckInfo, setCardDeckInfo] = useState<cardDeckInfoEl>();
+  const [cardList, setCardList] = useState<card[]>([]);
+  const [currentCardNumber, setCurrentCardNumber] = useState(0);
   const [answerVisible, setAnswerVisible] = useState(false);
-  const [animation, setAnimation] = useState("");
-  const lastCardNum = cardList.length - 1;
 
-  const handlePrveCard = () => {
-    setAnswerVisible(false);
-    setCurrentCardNumber((prev) => {
-      if (prev !== 1) return prev - 1;
-      return lastCardNum;
-    });
-    setAnimation("prev");
+  const getCards = async () => {
+    const result = await getCardList(cardDeckId!);
+    setCardDeckInfo({ name: result?.data.deck_name, img: result?.data?.image_url });
+    setCardList(Object.values(result?.data?.card_deck));
   };
-  const handleNexteCard = () => {
-    setAnswerVisible(false);
-    setCurrentCardNumber((prev) => {
-      if (prev !== lastCardNum) return prev + 1;
-      return 1;
-    });
-    setAnimation("next");
-  };
+
+  useEffect(() => {
+    getCards();
+  }, []);
 
   return (
     <>
-      <CardDeckDesc cardDeckName={SAMPLE.filename} totalNum={lastCardNum} />
+      <CardDeckDesc
+        cardDeckname={cardDeckInfo?.name!}
+        cardDeckimg={cardDeckInfo?.img!}
+        totalNum={cardList.length}
+      />
       <CardView>
         <CardSlider
           cardList={cardList}
           currentNum={currentCardNumber}
-          onPrevCard={handlePrveCard}
-          onNextCard={handleNexteCard}
-          animation={animation}
+          setAnswerVisible={setAnswerVisible}
+          setCurrentCardNumber={setCurrentCardNumber}
         />
         <CardAnswer
           cardList={cardList}
