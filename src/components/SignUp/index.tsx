@@ -30,7 +30,10 @@ const SignUp = () => {
             <h3>JOIN</h3>
             <p>반가워요!🙌같이 공부할 준비되셨나요?</p>
           </SignUpHeader>
-          <img src="./assets/Icons/User.png" alt="기본 유저 이미지" />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/Icons/User.png`}
+            alt="기본 유저 이미지"
+          />
           <SignUpInputForm onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="name">이름을 작성해주세요.</label>
             <input

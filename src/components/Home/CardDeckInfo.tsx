@@ -12,7 +12,10 @@ const CardDeckInfo = () => {
   return (
     <CardDeckInfoContainer>
       <Title>
-        <img src="./assets/Icons/Deck.png" alt="MY카드덱 아이콘" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Icons/Deck.png`}
+          alt="MY카드덱 아이콘"
+        />
         <h5>MY카드덱</h5>
       </Title>
       <SubTitle>
@@ -24,7 +27,7 @@ const CardDeckInfo = () => {
           <CardDeck
             key={cardDeck.id}
             title={cardDeck.title}
-            image={cardDeck.image}
+            image={process.env.PUBLIC_URL + cardDeck.image}
             onClick={() => routeTo("/cardDeckList")}
             hoverAction={true}
           />

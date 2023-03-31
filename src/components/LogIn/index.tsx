@@ -28,7 +28,7 @@ const LogIn = () => {
                   routeTo("/signUp");
                 }}>
                 <img
-                  src="./assets/Images/image-social-kakaoTalk.png"
+                  src={`${process.env.PUBLIC_URL}/assets/Images/image-social-kakaoTalk.png`}
                   alt="카카오톡 소셜로그인 하기"
                 />
               </button>
@@ -38,7 +38,7 @@ const LogIn = () => {
                   routeTo("/signUp");
                 }}>
                 <img
-                  src="./assets/Images/image-social-naver.png"
+                  src={`${process.env.PUBLIC_URL}/assets/Images/image-social-naver.png`}
                   alt="네이버 소셜로그인 하기"
                 />
               </button>
@@ -48,7 +48,7 @@ const LogIn = () => {
                   routeTo("/signUp");
                 }}>
                 <img
-                  src="./assets/Images/image-social-google.png"
+                  src={`${process.env.PUBLIC_URL}/assets/Images/image-social-google.png`}
                   alt="구글 소셜로그인 하기"
                 />
               </button>

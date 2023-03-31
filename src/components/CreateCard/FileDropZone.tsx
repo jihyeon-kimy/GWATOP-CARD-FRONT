@@ -30,7 +30,10 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
       )}
       {!selectedFile && (
         <DropBox>
-          <img src="./assets/Icons/Upload.png" alt="업로드 아이콘" />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/Icons/Upload.png`}
+            alt="업로드 아이콘"
+          />
           <p>이 곳을 클릭 또는 파일을 드래그해주세요.</p>
           <p>
             파일 크기 제한 : 최대 <span>20MB</span>
@@ -45,10 +48,16 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
               e.stopPropagation();
               setSelectedFile(null);
             }}>
-            <img src="./assets/Icons/DeleteYellow.png" alt="파일 삭제 아이콘" />
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/Icons/DeleteYellow.png`}
+              alt="파일 삭제 아이콘"
+            />
             <span>{selectedFile[0]?.path}</span>
           </button>
-          <img src="./assets/Icons/Upload.png" alt="업로드 아이콘" />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/Icons/Upload.png`}
+            alt="업로드 아이콘"
+          />
         </DropBox>
       )}
     </DropZoneContainer>

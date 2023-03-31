@@ -18,7 +18,7 @@ const DeckList: React.FC<deckListProps> = ({ onOpenDeleteModal }) => {
           <CardDeck
             className="card-deck-class"
             frontElclassName="card-deck-front-el-class"
-            image="./assets/Images/image-card-1.jpg"
+            image={`${process.env.PUBLIC_URL}/assets/Images/image-card-1.jpg`}
             title="카드덱 제목"
             onClick={() => {
               routeTo("/view");

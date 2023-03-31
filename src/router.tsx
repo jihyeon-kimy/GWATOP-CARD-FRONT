@@ -25,7 +25,7 @@ export const routerData: RouterElement[] = [
     label: "Home",
     element: <HomePage />,
     onNav: true,
-    icon: "./assets/Icons/Home.png",
+    icon: "/assets/Icons/Home.png",
   },
   {
     id: 1,
@@ -33,7 +33,7 @@ export const routerData: RouterElement[] = [
     label: "카드생성",
     element: <CreateCardPage />,
     onNav: true,
-    icon: "./assets/Icons/Create.png",
+    icon: "/assets/Icons/Create.png",
     withAuthorization: true,
   },
   {
@@ -42,7 +42,7 @@ export const routerData: RouterElement[] = [
     label: "MY카드덱",
     element: <CardDeckListPage />,
     onNav: true,
-    icon: "./assets/Icons/Deck.png",
+    icon: "/assets/Icons/Deck.png",
     withAuthorization: true,
   },
   {

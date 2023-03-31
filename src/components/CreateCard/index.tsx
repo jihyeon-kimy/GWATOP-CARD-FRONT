@@ -56,7 +56,10 @@ const CreateCard = () => {
       <CreateCardContainer>
         <Card className="card-class">
           <Header>
-            <img src="./assets/Icons/Create.png" alt="카드생성 아이콘" />
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/Icons/Create.png`}
+              alt="카드생성 아이콘"
+            />
             <h3>카드 생성</h3>
             <p>공부하고자 하는 학습자료를 업로드하고, 기출문제를 생성해보세요!</p>
           </Header>

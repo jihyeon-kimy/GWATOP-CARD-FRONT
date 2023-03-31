@@ -21,14 +21,18 @@ const Header = () => {
       <HeaderContainer>
         <HeaderWrapper>
           <UserOverlayMenu visible={userMenuVisible} />
-          <Logo src="./assets/Images/logo.png" alt="로고" onClick={() => routeTo("/")} />
+          <Logo
+            src={`${process.env.PUBLIC_URL}/assets/Images/logo.png`}
+            alt="로고"
+            onClick={() => routeTo("/")}
+          />
           <Nav>
             {navList?.map((item) => (
               <NavItem
                 key={item?.id}
                 label={item?.label}
                 onClick={() => routeTo(item?.path)}>
-                <img src={item?.icon} alt={item?.label} />
+                <img src={`${process.env.PUBLIC_URL}${item?.icon}`} alt={item?.label} />
                 <span>{item?.label}</span>
               </NavItem>
             ))}

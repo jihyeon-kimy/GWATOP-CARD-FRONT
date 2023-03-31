@@ -9,7 +9,10 @@ const ServiceInfo = () => {
 
   return (
     <ServiceInfocContainer>
-      <img src="./assets/Images/image-main.png" alt="메인 페이지 이미지" />
+      <img
+        src={`${process.env.PUBLIC_URL}/assets/Images/image-main.png`}
+        alt="메인 페이지 이미지"
+      />
       <InfoText>
         <h2>
           <b>시험준비</b>부터 <b>과탑</b>처럼 <br /> 기출문제 생성 서비스 <b>과탑카드</b>

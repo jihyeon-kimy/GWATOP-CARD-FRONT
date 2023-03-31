@@ -7,7 +7,10 @@ const PageHeader = () => {
   return (
     <PageHeaderContainer>
       <Title>
-        <img src="./assets/Icons/Deck.png" alt="카드덱 아이콘" />
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/Icons/Deck.png`}
+          alt="카드덱 아이콘"
+        />
         <h3>MY 카드덱</h3>
       </Title>
       <p>생성한 기출문제를 MY카드덱에서 관리해보세요!</p>

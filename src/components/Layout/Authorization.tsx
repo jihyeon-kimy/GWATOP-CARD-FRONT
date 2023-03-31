@@ -14,7 +14,7 @@ export const Authorization: React.FC<authorizationProps> = ({ children }) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      dispatch(setRedirectPath({ redirectPath: currentPath }));
+      dispatch(setRedirectPath({ redirectPath: `/${currentPath.split("/")[2]}` }));
       return routeTo("/login");
     }
   }, [isLoggedIn, routeTo]);

@@ -23,7 +23,10 @@ const UserOverlayMenu: React.FC<userOverlayMenuProps> = ({ visible }) => {
           <UserIcon>{name[0]}</UserIcon>
           <UserName>{name}</UserName>
           <SettingButton>
-            <img src="./assets/Icons/Setting.png" alt="계정관리 이미티콘" />
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/Icons/Setting.png`}
+              alt="계정관리 이미티콘"
+            />
             <span
               onClick={() => {
                 routeTo("/profile");

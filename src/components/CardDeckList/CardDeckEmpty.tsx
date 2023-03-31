@@ -9,7 +9,7 @@ const CardDeckEmpty = () => {
     <CardDeckEmptyContainer>
       <CardDeck
         title=""
-        image="./assets/Icons/Plus.png"
+        image={`${process.env.PUBLIC_URL}/assets/Icons/Plus.png`}
         onClick={() => {}}
         className="empty-card-deck-class"
         frontElclassName="card-deck-front-el-class"
