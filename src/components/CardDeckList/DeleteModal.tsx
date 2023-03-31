@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { deleteCardDeck } from "../../api/cardDeck";
 import { flexBox } from "../../styles/postion";
 import Button from "../Common/Button";
 import Modal from "../Common/Modal";
@@ -6,16 +7,34 @@ import Modal from "../Common/Modal";
 interface deleteMoalProps {
   visible: boolean;
   onClose: () => void;
+  deckId: string;
+  getCardDecks: () => Promise<void>;
 }
 
-const DeleteModal: React.FC<deleteMoalProps> = ({ visible, onClose }) => {
+const DeleteModal: React.FC<deleteMoalProps> = ({
+  visible,
+  onClose,
+  deckId,
+  getCardDecks,
+}) => {
+  const deleteDeck = async (deckId: string) => {
+    await deleteCardDeck(deckId);
+  };
+
   return (
     <Modal visible={visible} onClose={onClose}>
       <ModalContent>
         <span>🗑️</span>
         <p>해당 카드덱을 삭제하시겠습니까?</p>
         <div>
-          <Button onClick={() => {}}>확인</Button>
+          <Button
+            onClick={async () => {
+              await deleteDeck(deckId);
+              await getCardDecks();
+              onClose();
+            }}>
+            확인
+          </Button>
           <Button onClick={onClose}>취소</Button>
         </div>
       </ModalContent>

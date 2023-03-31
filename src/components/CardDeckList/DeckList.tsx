@@ -1,35 +1,57 @@
+import { useRef } from "react";
 import styled from "styled-components";
+import useOverlay from "../../hooks/useOverlay";
 import { useRouter } from "../../hooks/useRouter";
 import { flexBox } from "../../styles/postion";
+import { cardDeck } from "../../types/card";
 import CardDeck from "../Common/CardDeck";
+import DeleteModal from "./DeleteModal";
 
 interface deckListProps {
-  onOpenDeleteModal: () => void;
+  deckList: cardDeck[];
+  getCardDecks: () => Promise<void>;
 }
 
-const DeckList: React.FC<deckListProps> = ({ onOpenDeleteModal }) => {
+const DeckList: React.FC<deckListProps> = ({ deckList, getCardDecks }) => {
   const { routeTo } = useRouter();
-  const sample = [1, 2, 3, 4, 5, 6];
+  const { overlayVisible, openOverlay, closeOverlay } = useOverlay();
+  const ClickedDeckID = useRef("");
 
   return (
-    <DeckListContainer>
-      {sample.map((item, idx) => (
-        <CardWrapper key={idx}>
-          <CardDeck
-            className="card-deck-class"
-            frontElclassName="card-deck-front-el-class"
-            image={`${process.env.PUBLIC_URL}/assets/Images/image-card-1.jpg`}
-            title="카드덱 제목"
-            onClick={() => {
-              routeTo("/view");
-            }}
-          />
-          <button type="button" onClick={onOpenDeleteModal}>
-            <img src="./assets/Icons/DeleteBlack.png" alt="삭제하기" />
-          </button>
-        </CardWrapper>
-      ))}
-    </DeckListContainer>
+    <>
+      <DeleteModal
+        visible={overlayVisible}
+        onClose={closeOverlay}
+        deckId={ClickedDeckID.current}
+        getCardDecks={getCardDecks}
+      />
+      <DeckListContainer>
+        {deckList.map((item, idx) => (
+          <CardWrapper key={idx}>
+            <CardDeck
+              className="card-deck-class"
+              frontElclassName="card-deck-front-el-class"
+              image={item.image_url}
+              title={item.deck_name}
+              onClick={() => {
+                routeTo(`/view/${item.deck_id}`);
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                ClickedDeckID.current = item.deck_id;
+                openOverlay();
+              }}>
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/Icons/DeleteBlack.png`}
+                alt="삭제하기"
+              />
+            </button>
+          </CardWrapper>
+        ))}
+      </DeckListContainer>
+    </>
   );
 };
 

@@ -1,24 +1,40 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import useOverlay from "../../hooks/useOverlay";
+import { getCardDeckList } from "../../api/cardDeck";
 import { flexBox } from "../../styles/postion";
+import { cardDeck } from "../../types/card";
 import CardDeckEmpty from "./CardDeckEmpty";
 import DeckList from "./DeckList";
-import DeleteModal from "./DeleteModal";
 import PageHeader from "./PageHeader";
 
 const CardDeckList = () => {
-  const { overlayVisible, openOverlay, closeOverlay } = useOverlay();
+  const [deckList, setDeckList] = useState<cardDeck[]>();
+  const [loading, setLoading] = useState(true);
+
+  const getCardDecks = async () => {
+    setLoading(true);
+    try {
+      const result = await getCardDeckList();
+      setDeckList(result.data.response);
+    } catch (e) {
+      console.log(e);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getCardDecks();
+  }, []);
 
   return (
-    <>
-      <DeleteModal visible={overlayVisible} onClose={closeOverlay} />
-      <CardDeckListContainer>
-        <PageHeader />
-        {/* 카드덱이 비어있을 경우 */}
-        {/* <CardDeckEmpty /> */}
-        <DeckList onOpenDeleteModal={openOverlay} />
-      </CardDeckListContainer>
-    </>
+    <CardDeckListContainer>
+      <PageHeader />
+      {loading && <></>}
+      {deckList?.length === 0 && <CardDeckEmpty />}
+      {deckList?.length! > 0 && (
+        <DeckList deckList={deckList!} getCardDecks={getCardDecks} />
+      )}
+    </CardDeckListContainer>
   );
 };
 

@@ -54,7 +54,7 @@ export const routerData: RouterElement[] = [
   },
   {
     id: 4,
-    path: "/view",
+    path: "/view/:cardDeckId",
     label: "카드조회",
     element: <ViewPage />,
     withAuthorization: true,
