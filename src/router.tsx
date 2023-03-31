@@ -86,7 +86,8 @@ export const routers = createBrowserRouter(
         element: router.element,
       };
     }
-  })
+  }),
+  { basename: "/GWATOP-CARD-FRONT" }
 );
 
 export const navList: RouterElement[] = routerData.reduce((prev, router) => {
