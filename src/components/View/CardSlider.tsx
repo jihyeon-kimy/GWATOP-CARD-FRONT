@@ -44,7 +44,7 @@ const CardSlider: React.FC<cardSliderProps> = ({
     <CardSliderContainer>
       <Card className="coverd-card-class">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap.png`}
+          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap-logo.png`}
           alt="카드 기본 이미지"
         />
       </Card>
@@ -77,7 +77,7 @@ const CardSlider: React.FC<cardSliderProps> = ({
       </ArrowButton>
       <Card className="coverd-card-class">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap.png`}
+          src={`${process.env.PUBLIC_URL}/assets/Images/image-cap-logo.png`}
           alt="카드 기본 이미지"
         />
       </Card>
