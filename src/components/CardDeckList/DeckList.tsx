@@ -1,22 +1,31 @@
 import styled from "styled-components";
+import { useRouter } from "../../hooks/useRouter";
 import { flexBox } from "../../styles/postion";
 import CardDeck from "../Common/CardDeck";
 
-const DeckList = () => {
+interface deckListProps {
+  onOpenDeleteModal: () => void;
+}
+
+const DeckList: React.FC<deckListProps> = ({ onOpenDeleteModal }) => {
+  const { routeTo } = useRouter();
   const sample = [1, 2, 3, 4, 5, 6];
+
   return (
     <DeckListContainer>
-      {sample.map((item) => (
-        <CardWrapper>
+      {sample.map((item, idx) => (
+        <CardWrapper key={idx}>
           <CardDeck
             className="card-deck-class"
             frontElclassName="card-deck-front-el-class"
             image="./assets/Images/image-card-1.jpg"
             title="카드덱 제목"
-            onClick={() => {}}
+            onClick={() => {
+              routeTo("/view");
+            }}
           />
-          <button type="button" onClick={() => {}}>
-            <img src="./assets/Images/image-button-delete.png" alt="삭제하기" />
+          <button type="button" onClick={onOpenDeleteModal}>
+            <img src="./assets/Icons/DeleteBlack.png" alt="삭제하기" />
           </button>
         </CardWrapper>
       ))}
