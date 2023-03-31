@@ -45,7 +45,7 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
               e.stopPropagation();
               setSelectedFile(null);
             }}>
-            <img src="./assets/Icons/Delete.png" alt="파일 삭제 아이콘" />
+            <img src="./assets/Icons/DeleteYellow.png" alt="파일 삭제 아이콘" />
             <span>{selectedFile[0]?.path}</span>
           </button>
           <img src="./assets/Icons/Upload.png" alt="업로드 아이콘" />

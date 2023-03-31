@@ -15,7 +15,7 @@ const CardDeckDesc: React.FC<cardDeckDesc> = ({ cardDeckName, totalNum }) => {
     <CardDeckDescContainer>
       <CardDeck
         className="card-deck-class"
-        title="카드덱 제목"
+        title={cardDeckName}
         image="./assets/Images/image-card-1.jpg"
         onClick={() => {}}
       />

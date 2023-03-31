@@ -26,7 +26,7 @@ const CardSlider: React.FC<cardSliderProps> = ({
         <img src="./assets/Images/image-cap.png" alt="카드 기본 이미지" />
       </Card>
       <ArrowButton type="button" onClick={onPrevCard}>
-        <img src="./assets/Images/image-button-left.png" alt="이전 카드 보기" />
+        <img src="./assets/Icons/Prev.png" alt="이전 카드 보기" />
       </ArrowButton>
       <Card className="current-card-class" key={currentNum} animation={animation}>
         <div>
@@ -44,7 +44,7 @@ const CardSlider: React.FC<cardSliderProps> = ({
         </QuestionNum>
       </Card>
       <ArrowButton type="button" onClick={onNextCard}>
-        <img src="./assets/Images/image-button-right.png" alt="다음 카드 보기" />
+        <img src="./assets/Icons/Next.png" alt="다음 카드 보기" />
       </ArrowButton>
       <Card className="coverd-card-class">
         <img src="./assets/Images/image-cap.png" alt="카드 기본 이미지" />
