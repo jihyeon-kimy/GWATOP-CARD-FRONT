@@ -16,7 +16,6 @@ const PrecautionsModal: React.FC<precautionsModalProps> = ({
   onClose,
   onCreate,
 }) => {
-  const { routeTo } = useRouter();
   return (
     <Modal visible={visible} onClose={onClose}>
       <ModalContent>
@@ -32,7 +31,6 @@ const PrecautionsModal: React.FC<precautionsModalProps> = ({
         <Button
           onClick={() => {
             onCreate();
-            routeTo("/cardDeckList");
           }}>
           확인
         </Button>

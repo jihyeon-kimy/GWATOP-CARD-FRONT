@@ -7,59 +7,92 @@ import color from "../../styles/color";
 import { useForm } from "react-hook-form";
 import Button from "../Common/Button";
 import FileDropZone from "./FileDropZone";
+import PrecautionsModal from "./PrecautionsModal";
+import useOverlay from "../../hooks/useOverlay";
+import { uploadPDF } from "../../api/cardDeck";
+import { useRouter } from "../../hooks/useRouter";
+// import { uploadPDF } from "../../api/cardDeck";
 
 const CreateCard = () => {
   const [selectedFile, setSelectedFile] = useState<any>(null);
+  const [name, setName] = useState("");
+  const { overlayVisible, openOverlay, closeOverlay } = useOverlay();
+  const { routeTo } = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { isDirty, isValid },
   } = useForm();
+
   const onSubmit = (data: any) => {
+    openOverlay();
+    setName(data.name);
+  };
+
+  const onCreateCard = async () => {
     let formData = new FormData();
     formData.append("myfile", selectedFile[0]);
-    formData.append("deck_name", data.name);
-    // console.log(formData.get("file"));
-    // console.log(formData.get("name"));
-    // console.log(formData.entries());
+    formData.append("deck_name", name);
+    formData.append("enctype", "multipart/form-data");
+    try {
+      console.log("myfile", formData.get("myfile"));
+      console.log("deck_name", formData.get("deck_name"));
+      const result = await uploadPDF(formData);
+      console.log(result);
+      routeTo("/cardDeckList");
+    } catch (e) {
+      console.log("PDF업로드 에러", e);
+    }
   };
 
   return (
-    <CreateCardContainer>
-      <Card className="card-class">
-        <Header>
-          <img src="./assets/Icons/Create.png" alt="카드생성 아이콘" />
-          <h3>카드 생성</h3>
-          <p>공부하고자 하는 학습자료를 업로드하고, 기출문제를 생성해보세요!</p>
-        </Header>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <InputFile>
-            <SubTitle>파일업로드</SubTitle>
-            <ul>
-              <li>PDF 형식의 파일을 업로드해주세요. (파일 크기 제한 : 최대 20MB)</li>
-              <li>서술형 줄글 형태의 문서에 최적화되어 있어요.</li>
-            </ul>
-            <FileDropZone selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
-          </InputFile>
-          <InputText>
-            <SubTitle> 카드덱 제목</SubTitle>
-            <p>해당 기출문제 모음집의 제목을 입력해주세요</p>
-            <input
-              type="text"
-              {...register("name", { required: true, maxLength: 5 })}
-              placeholder="6자 이내 입력"
-            />
-          </InputText>
-        </form>
-        <Button
-          className="button-class"
-          type="submit"
-          disabled={isDirty || !isValid || !selectedFile || selectedFile?.length === 0}>
-          카드덱 생성하기
-        </Button>
-      </Card>
-    </CreateCardContainer>
+    <>
+      <PrecautionsModal
+        visible={overlayVisible}
+        onClose={closeOverlay}
+        onCreate={onCreateCard}
+      />
+      <CreateCardContainer>
+        <Card className="card-class">
+          <Header>
+            <img src="./assets/Icons/Create.png" alt="카드생성 아이콘" />
+            <h3>카드 생성</h3>
+            <p>공부하고자 하는 학습자료를 업로드하고, 기출문제를 생성해보세요!</p>
+          </Header>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <InputFile>
+              <SubTitle>파일업로드</SubTitle>
+              <ul>
+                <li>PDF 형식의 파일을 업로드해주세요. (파일 크기 제한 : 최대 20MB)</li>
+                <li>서술형 줄글 형태의 문서에 최적화되어 있어요.</li>
+              </ul>
+              <FileDropZone
+                selectedFile={selectedFile}
+                setSelectedFile={setSelectedFile}
+              />
+            </InputFile>
+            <InputText>
+              <SubTitle> 카드덱 제목</SubTitle>
+              <p>해당 기출문제 모음집의 제목을 입력해주세요</p>
+              <input
+                type="text"
+                {...register("name", { required: true, maxLength: 5 })}
+                placeholder="6자 이내 입력"
+              />
+            </InputText>
+            <Button
+              className="button-class"
+              type="submit"
+              disabled={
+                !isDirty || !isValid || !selectedFile || selectedFile?.length === 0
+              }>
+              카드덱 생성하기
+            </Button>
+          </form>
+        </Card>
+      </CreateCardContainer>
+    </>
   );
 };
 
@@ -143,9 +176,11 @@ const InputText = styled.div`
     margin: 20px 0 0 27px;
     border: 1px solid #c4c4c4;
     border-radius: 10px;
+    padding-left: 22px;
+    font-size: 18px;
+    font-weight: 500;
 
     &::placeholder {
-      padding-left: 22px;
       font-size: 18px;
       font-weight: 500;
     }
