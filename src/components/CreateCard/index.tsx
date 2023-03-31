@@ -11,14 +11,14 @@ import PrecautionsModal from "./PrecautionsModal";
 import useOverlay from "../../hooks/useOverlay";
 import { uploadPDF } from "../../api/cardDeck";
 import { useRouter } from "../../hooks/useRouter";
-// import { uploadPDF } from "../../api/cardDeck";
+import Loading from "./Loading";
 
 const CreateCard = () => {
-  const [selectedFile, setSelectedFile] = useState<any>(null);
-  const [name, setName] = useState("");
   const { overlayVisible, openOverlay, closeOverlay } = useOverlay();
   const { routeTo } = useRouter();
-
+  const [selectedFile, setSelectedFile] = useState<any>(null);
+  const [submitedName, setSubmitedNam] = useState("");
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -27,23 +27,22 @@ const CreateCard = () => {
 
   const onSubmit = (data: any) => {
     openOverlay();
-    setName(data.name);
+    setSubmitedNam(data.name);
   };
 
   const onCreateCard = async () => {
     let formData = new FormData();
     formData.append("myfile", selectedFile[0]);
-    formData.append("deck_name", name);
+    formData.append("deck_name", submitedName);
     formData.append("enctype", "multipart/form-data");
+    setLoading(true);
     try {
-      console.log("myfile", formData.get("myfile"));
-      console.log("deck_name", formData.get("deck_name"));
-      const result = await uploadPDF(formData);
-      console.log(result);
+      await uploadPDF(formData);
       routeTo("/cardDeckList");
     } catch (e) {
       console.log("PDF업로드 에러", e);
     }
+    setLoading(false);
   };
 
   return (
@@ -53,6 +52,7 @@ const CreateCard = () => {
         onClose={closeOverlay}
         onCreate={onCreateCard}
       />
+      {loading && <Loading />}
       <CreateCardContainer>
         <Card className="card-class">
           <Header>

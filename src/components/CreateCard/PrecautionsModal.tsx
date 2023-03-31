@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRouter } from "../../hooks/useRouter";
 import { flexBox } from "../../styles/postion";
 import text from "../../styles/text";
 import Button from "../Common/Button";
@@ -31,6 +30,7 @@ const PrecautionsModal: React.FC<precautionsModalProps> = ({
         <Button
           onClick={() => {
             onCreate();
+            onClose();
           }}>
           확인
         </Button>
