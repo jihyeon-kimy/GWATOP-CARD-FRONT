@@ -1,5 +1,7 @@
 const zIndex = {
-    headerLevel: 10
+  headerLevel: 10,
+  overlayBackdropLevel: 20,
+  overlayLevel: 20,
 };
 
 export default zIndex;
