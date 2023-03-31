@@ -1,34 +1,51 @@
 import styled from "styled-components";
+import useOverlay from "../../hooks/useOverlay";
+import { useAppSelector } from "../../hooks/useRedux";
 import { useRouter } from "../../hooks/useRouter";
 import { navList } from "../../router";
+import { selectIsLoggedIn, selectName } from "../../store/authSlice";
 import color from "../../styles/color";
 import { flexBox } from "../../styles/postion";
 import text from "../../styles/text";
 import zIndex from "../../styles/z-index";
+import UserOverlayMenu from "./UserOverlayMenu";
 
 const Header = () => {
   const { routeTo } = useRouter();
+  const { overlayVisible: userMenuVisible, openOverlay: openUserMenu } = useOverlay();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const name = useAppSelector(selectName);
 
   return (
-    <HeaderContainer>
-      <HeaderWrapper>
-        <Logo src="./assets/Images/logo.png" alt="로고" onClick={() => routeTo("/")} />
-        <Nav>
-          {navList?.map((item) => (
-            <NavItem
-              key={item?.id}
-              label={item?.label}
-              onClick={() => routeTo(item?.path)}>
-              <img src={item?.icon} alt={item?.label} />
-              <span>{item?.label}</span>
-            </NavItem>
-          ))}
-          {/** 비로그인 시 **/}
-          {/* <LoginButton>로그인</LoginButton>  */}
-          <UserIcon>재</UserIcon>
-        </Nav>
-      </HeaderWrapper>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <HeaderWrapper>
+          <UserOverlayMenu visible={userMenuVisible} />
+          <Logo src="./assets/Images/logo.png" alt="로고" onClick={() => routeTo("/")} />
+          <Nav>
+            {navList?.map((item) => (
+              <NavItem
+                key={item?.id}
+                label={item?.label}
+                onClick={() => routeTo(item?.path)}>
+                <img src={item?.icon} alt={item?.label} />
+                <span>{item?.label}</span>
+              </NavItem>
+            ))}
+            {!isLoggedIn && (
+              <LoginButton
+                type="button"
+                onClick={() => {
+                  routeTo("/login");
+                }}>
+                로그인
+              </LoginButton>
+            )}
+            {isLoggedIn && <UserIcon onClick={openUserMenu}>{name[0]}</UserIcon>}
+          </Nav>
+        </HeaderWrapper>
+      </HeaderContainer>
+    </>
   );
 };
 
@@ -45,6 +62,7 @@ const HeaderContainer = styled.header`
 `;
 
 const HeaderWrapper = styled.div`
+  position: relative;
   ${flexBox({ justify: "space-between" })}
   max-width: 1920px;
   height: 70px;
