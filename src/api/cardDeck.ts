@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://poten-back.herokuapp.com";
+const BASE_URL = "https://a83d-49-50-172-11.jp.ngrok.io";
 
 export const customAxios = axios.create({
   baseURL: BASE_URL,
