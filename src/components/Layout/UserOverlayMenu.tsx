@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
+import useAuth from "../../hooks/useAuth";
 import { useAppSelector } from "../../hooks/useRedux";
-import { useRouter } from "../../hooks/useRouter";
-import { selectName } from "../../store/authSlice";
+import { selectIsLoggedIn, selectName } from "../../store/authSlice";
 import color from "../../styles/color";
 import { flexBox } from "../../styles/postion";
 import text from "../../styles/text";
@@ -13,30 +13,28 @@ interface userOverlayMenuProps {
 }
 
 const UserOverlayMenu: React.FC<userOverlayMenuProps> = ({ visible }) => {
-  const { routeTo } = useRouter();
   const name = useAppSelector(selectName);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const { userLogOut } = useAuth();
 
   return (
-    <UserMemuContainer visible={visible}>
-      <Card className="card-class">
-        <CardContent>
-          <UserIcon>{name[0]}</UserIcon>
-          <UserName>{name}</UserName>
-          <SettingButton>
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/Icons/Setting.png`}
-              alt="계정관리 이미티콘"
-            />
-            <span
-              onClick={() => {
-                routeTo("/profile");
-              }}>
-              계정관리
-            </span>
-          </SettingButton>
-        </CardContent>
-      </Card>
-    </UserMemuContainer>
+    <>
+      {isLoggedIn && (
+        <UserMemuContainer visible={visible}>
+          <Card className="card-class">
+            <CardContent>
+              <UserIcon>{name[0]}</UserIcon>
+              <UserName>{name}</UserName>
+              <LogoutButton>
+                <button type="button" onClick={userLogOut}>
+                  로그아웃
+                </button>
+              </LogoutButton>
+            </CardContent>
+          </Card>
+        </UserMemuContainer>
+      )}
+    </>
   );
 };
 
@@ -103,16 +101,15 @@ const UserName = styled.span`
   margin-top: 13px;
 `;
 
-const SettingButton = styled.button`
+const LogoutButton = styled.div`
   ${flexBox}
   width: 137px;
   margin-top: 14px;
   padding-top: 16px;
   border-top: 1px solid ${color.black};
-  cursor: pointer;
 
-  span {
+  button {
     ${text.textStyle20()}
-    margin-left: 16px;
+    cursor: pointer;
   }
 `;
