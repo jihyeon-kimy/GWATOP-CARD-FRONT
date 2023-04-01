@@ -4,7 +4,6 @@ import CardDeckListPage from "./pages/CardDeckListPage";
 import CreateCardPage from "./pages/CreateCardPage";
 import HomePage from "./pages/HomePage";
 import LogInPage from "./pages/LogInPage";
-import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
 import ViewPage from "./pages/ViewPage";
 
@@ -47,26 +46,19 @@ export const routerData: RouterElement[] = [
   },
   {
     id: 3,
-    path: "/profile",
-    label: "프로필",
-    element: <ProfilePage />,
-    withAuthorization: true,
-  },
-  {
-    id: 4,
     path: "/view/:cardDeckId",
     label: "카드조회",
     element: <ViewPage />,
     withAuthorization: true,
   },
   {
-    id: 5,
+    id: 4,
     path: "/signUp",
     label: "회원가입",
     element: <SignUpPage />,
   },
   {
-    id: 6,
+    id: 5,
     path: "/logIn",
     label: "로그인",
     element: <LogInPage />,
