@@ -12,9 +12,12 @@ export const Authorization: React.FC<authorizationProps> = ({ children }) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const dispatch = useAppDispatch();
 
+  const redirectPath =
+    currentPath.split("/")[2] === "" ? "/" : `/${currentPath.split("/")[2]}`;
+
   useEffect(() => {
     if (!isLoggedIn) {
-      dispatch(setRedirectPath({ redirectPath: `/${currentPath.split("/")[2]}` }));
+      dispatch(setRedirectPath(redirectPath));
       return routeTo("/login");
     }
   }, [isLoggedIn, routeTo]);

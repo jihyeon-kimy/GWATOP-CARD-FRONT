@@ -1,17 +1,22 @@
-import React from "react";
-import { Provider } from "react-redux";
+import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
+import useAuth from "./hooks/useAuth";
 import { routers } from "./router";
-import { store } from "./store";
 import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
+  const { autoLogin } = useAuth();
+
+  useEffect(() => {
+    if (localStorage.getItem("GWATOP_CARD")) {
+      autoLogin();
+    }
+  }, []);
+
   return (
     <>
-      <Provider store={store}>
-        <GlobalStyle />
-        <RouterProvider router={routers} />
-      </Provider>
+      <GlobalStyle />
+      <RouterProvider router={routers} />
     </>
   );
 }

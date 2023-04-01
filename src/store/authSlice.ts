@@ -10,11 +10,11 @@ export const authSlice = createSlice({
   },
   reducers: {
     setRedirectPath: (state, action) => {
-      state.redirectPath = action.payload.redirectPath;
+      state.redirectPath = action.payload;
     },
     logIn: (state, action) => {
       state.isLoggedIn = true;
-      state.name = action.payload.name;
+      state.name = action.payload;
     },
     logOut: (state) => {
       state.isLoggedIn = false;

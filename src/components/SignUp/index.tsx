@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import useAuth from "../../hooks/useAuth";
+import { useAppSelector } from "../../hooks/useRedux";
 import { useRouter } from "../../hooks/useRouter";
-import { logIn, selectRedirectPath } from "../../store/authSlice";
+import { selectRedirectPath } from "../../store/authSlice";
 import { flexBox } from "../../styles/postion";
 import text from "../../styles/text";
 import Button from "../Common/Button";
@@ -10,7 +11,7 @@ import Card from "../Common/Card";
 
 const SignUp = () => {
   const { routeTo } = useRouter();
-  const dispatch = useAppDispatch();
+  const { userLogIn } = useAuth();
   const redirectPath = useAppSelector(selectRedirectPath);
   const {
     register,
@@ -18,7 +19,7 @@ const SignUp = () => {
     formState: { isDirty, isValid },
   } = useForm();
   const onSubmit = (data: any) => {
-    dispatch(logIn({ name: data.name }));
+    userLogIn(data.name);
     routeTo(redirectPath);
   };
 
