@@ -81,8 +81,8 @@ const CreateCard = () => {
               <p>해당 기출문제 모음집의 제목을 입력해주세요</p>
               <input
                 type="text"
-                {...register("name", { required: true, maxLength: 5 })}
-                placeholder="6자 이내 입력"
+                {...register("name", { required: true, maxLength: 7 })}
+                placeholder="8자 이내 입력"
               />
             </InputText>
             <Button

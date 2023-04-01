@@ -57,7 +57,7 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
           />
           <p>이 곳을 클릭 또는 파일을 드래그해주세요.</p>
           <p>
-            파일 크기 제한 : 최대 <span>20MB</span>
+            파일 크기 제한 : 최대 <span>500KB</span>
           </p>
         </DropBox>
       )}
