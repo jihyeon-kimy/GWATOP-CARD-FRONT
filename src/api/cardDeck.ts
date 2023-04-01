@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://49.50.172.11:8000";
+const BASE_URL = "https://poten-back.herokuapp.com";
 
 export const customAxios = axios.create({
   baseURL: BASE_URL,
