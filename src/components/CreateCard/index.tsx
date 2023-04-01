@@ -181,7 +181,7 @@ const InputFile = styled.div`
 const InputText = styled.div`
   p {
     ${text.textStyle20(400)}
-    margin-top: 8px 0 0 27px;
+    margin: 8px 0 0 27px;
     line-height: 27px;
     color: ${color.primary};
   }
