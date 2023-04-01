@@ -65,10 +65,11 @@ const CreateCard = () => {
           </Header>
           <form onSubmit={handleSubmit(onSubmit)}>
             <InputFile>
-              <SubTitle>파일업로드</SubTitle>
+              <SubTitleFile>파일업로드</SubTitleFile>
               <ul>
-                <li>PDF 형식의 파일을 업로드해주세요. (파일 크기 제한 : 최대 20MB)</li>
+                <li>PDF 형식의 파일을 업로드해주세요. (파일 크기 제한 : 최대 500KB)</li>
                 <li>서술형 줄글 형태의 문서에 최적화되어 있어요.</li>
+                <li>페이지별로 1개의 문제가 생성되니 참고해주세요! :)</li>
               </ul>
               <FileDropZone
                 selectedFile={selectedFile}
@@ -76,7 +77,7 @@ const CreateCard = () => {
               />
             </InputFile>
             <InputText>
-              <SubTitle> 카드덱 제목</SubTitle>
+              <SubTitleName> 카드덱 제목</SubTitleName>
               <p>해당 기출문제 모음집의 제목을 입력해주세요</p>
               <input
                 type="text"
@@ -139,9 +140,20 @@ const Header = styled.div`
   }
 `;
 
-const SubTitle = styled.h5`
+const SubTitleFile = styled.h5`
   ${text.textStyle24(700)}
   margin-top: 50px;
+
+  &::before {
+    content: "• ";
+    padding-right: 10px;
+  }
+`;
+
+const SubTitleName = styled.h5`
+  ${text.textStyle24(700)}
+  margin-top: 25px;
+
   &::before {
     content: "• ";
     padding-right: 10px;
@@ -153,6 +165,7 @@ const InputFile = styled.div`
     content: "•";
     padding-right: 10px;
   }
+
   ul {
     margin-top: 14px;
     margin-left: 27px;

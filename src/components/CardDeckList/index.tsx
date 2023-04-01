@@ -17,7 +17,7 @@ const CardDeckList = () => {
       const result = await getCardDeckList();
       setDeckList(result.data.response);
     } catch (e) {
-      console.log(e);
+      console.log("카드 덱 리스트 가져오기 오류", e);
     }
     setLoading(false);
   };
