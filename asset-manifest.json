@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/GWATOP-CARD-FRONT/static/js/main.0aa02c41.js",
+    "main.js": "/GWATOP-CARD-FRONT/static/js/main.f96f6b73.js",
     "index.html": "/GWATOP-CARD-FRONT/index.html",
-    "main.0aa02c41.js.map": "/GWATOP-CARD-FRONT/static/js/main.0aa02c41.js.map"
+    "main.f96f6b73.js.map": "/GWATOP-CARD-FRONT/static/js/main.f96f6b73.js.map"
   },
   "entrypoints": [
-    "static/js/main.0aa02c41.js"
+    "static/js/main.f96f6b73.js"
   ]
 }
