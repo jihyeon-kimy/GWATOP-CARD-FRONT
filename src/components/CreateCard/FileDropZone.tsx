@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import { flexBox } from "../../styles/postion";
@@ -9,8 +9,10 @@ interface fileDropZoneProps {
   setSelectedFile: (value: any) => void;
 }
 const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFile }) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
+  const [rejectedFile, setRejectedFile] = useState<any>(null);
+  const onDrop = useCallback((acceptedFiles: any, rejectedFiles: any) => {
     setSelectedFile(acceptedFiles);
+    setRejectedFile(rejectedFiles);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -24,14 +26,33 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
     <DropZoneContainer {...getRootProps()}>
       <input {...getInputProps()} />
       {selectedFile?.length === 0 && (
-        <DropBox className="rejected">
-          <p>올바른 형식으로 파일을 업로드해주세요.</p>
-        </DropBox>
+        <>
+          <DropBox className="selected rejected">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setRejectedFile(null);
+                setSelectedFile(null);
+              }}>
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/Icons/DeleteRed.png`}
+                alt="파일 삭제 아이콘"
+              />
+              <span>{rejectedFile?.[0]?.file?.path}</span>
+            </button>
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/Icons/UploadRed.png`}
+              alt="업로드 아이콘"
+            />
+          </DropBox>
+          <RejectText>*올바른 형식의 파일을 업로드해주세요</RejectText>
+        </>
       )}
       {!selectedFile && (
         <DropBox>
           <img
-            src={`${process.env.PUBLIC_URL}/assets/Icons/Upload.png`}
+            src={`${process.env.PUBLIC_URL}/assets/Icons/UploadYellow.png`}
             alt="업로드 아이콘"
           />
           <p>이 곳을 클릭 또는 파일을 드래그해주세요.</p>
@@ -55,7 +76,7 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
             <span>{selectedFile[0]?.path}</span>
           </button>
           <img
-            src={`${process.env.PUBLIC_URL}/assets/Icons/Upload.png`}
+            src={`${process.env.PUBLIC_URL}/assets/Icons/UploadYellow.png`}
             alt="업로드 아이콘"
           />
         </DropBox>
@@ -66,15 +87,15 @@ const FileDropZone: React.FC<fileDropZoneProps> = ({ selectedFile, setSelectedFi
 
 export default FileDropZone;
 const DropZoneContainer = styled.div`
-  width: 300px;
-  height: 120px;
-  margin: 32px auto 9px;
-  border-radius: 10px;
+  height: 143px;
+  margin-top: 20px;
 `;
 
 const DropBox = styled.div`
   ${flexBox({ direction: "column", justify: "center" })}
-  height: 100%;
+  width: 300px;
+  height: 120px;
+  margin: 0 auto;
   border: 1px solid ${color.yellowLight};
   border-radius: 10px;
   font-size: 14px;
@@ -114,7 +135,19 @@ const DropBox = styled.div`
   }
 
   &.rejected {
-    color: red;
-    border: 1px solid red;
+    border: 1px solid ${color.red};
+    background-color: ${color.redLight};
+    button {
+      color: ${color.red};
+    }
   }
+`;
+
+const RejectText = styled.p`
+  margin-top: 7px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  text-align: center;
+  color: ${color.red};
 `;

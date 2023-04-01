@@ -10,6 +10,9 @@ const color = {
 
   yellow: "#F5D25D",
   yellowLight: "#F3C640",
+
+  red: "#d91a49",
+  redLight: "#fbe3e8",
 };
 
 export default color;
