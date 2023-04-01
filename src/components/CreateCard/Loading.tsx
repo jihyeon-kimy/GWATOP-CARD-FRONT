@@ -16,7 +16,7 @@ const Loading = () => {
   return (
     <LoadingContainer>
       <img src={`${process.env.PUBLIC_URL}/assets/Icons/CapGreen.png`} alt="로고" />
-      <LoadingText>잠시만 기다려 주세요..</LoadingText>
+      <LoadingText>잠시만 기다려 주세요...</LoadingText>
       <BarLoader
         width={584}
         height={16}

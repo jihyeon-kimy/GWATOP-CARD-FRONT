@@ -40,7 +40,7 @@ const SignUp = () => {
             <input
               type="text"
               id="name"
-              placeholder="#{소셜계정 이름}"
+              placeholder="텍스트 입력"
               {...register("name", { required: true, minLength: 1 })}
             />
             <Button type="submit" disabled={!isDirty || !isValid}>

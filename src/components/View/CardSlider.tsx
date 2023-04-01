@@ -122,6 +122,7 @@ const CardSliderContainer = styled.div`
 const Question = styled.span`
   font-size: 26px;
   font-weight: 700;
+  line-height: 33px;
   color: ${color.primary};
 `;
 

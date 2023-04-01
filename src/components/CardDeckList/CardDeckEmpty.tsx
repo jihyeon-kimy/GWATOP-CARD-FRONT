@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import { useRouter } from "../../hooks/useRouter";
 import color from "../../styles/color";
 import { flexBox, posCenterCenter } from "../../styles/postion";
 import text from "../../styles/text";
 import CardDeck from "../Common/CardDeck";
 
 const CardDeckEmpty = () => {
+  const { routeTo } = useRouter();
   return (
     <CardDeckEmptyContainer>
       <CardDeck
         title=""
         image={`${process.env.PUBLIC_URL}/assets/Icons/Plus.png`}
-        onClick={() => {}}
+        onClick={() => {
+          routeTo("/create");
+        }}
         className="empty-card-deck-class"
         frontElclassName="card-deck-front-el-class"
       />

@@ -78,10 +78,11 @@ const CreateCard = () => {
             </InputFile>
             <InputText>
               <SubTitleName> 카드덱 제목</SubTitleName>
-              <p>해당 기출문제 모음집의 제목을 입력해주세요</p>
+              <p>해당 기출문제 모음집의 제목을 입력해주세요.</p>
               <input
+                maxLength={8}
                 type="text"
-                {...register("name", { required: true, maxLength: 7 })}
+                {...register("name", { required: true, maxLength: 8 })}
                 placeholder="8자 이내 입력"
               />
             </InputText>

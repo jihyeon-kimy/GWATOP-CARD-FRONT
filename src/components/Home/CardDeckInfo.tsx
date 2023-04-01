@@ -20,7 +20,7 @@ const CardDeckInfo = () => {
       </Title>
       <SubTitle>
         지금까지 내가 마스터한 문제들은
-        <br /> <b>MY카드덱</b>에서 확인해보세요
+        <br /> <b>MY카드덱</b>에서 확인해보세요.
       </SubTitle>
       <CardDeckList>
         {CARD_DECK_LIST.map((cardDeck) => (
@@ -60,6 +60,7 @@ const Title = styled.div`
 const SubTitle = styled.p`
   ${text.textStyle24()}
   margin-top: 22px;
+  text-align: center;
   b {
     font-weight: 700;
   }
