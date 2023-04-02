@@ -1,46 +1,167 @@
-# Getting Started with Create React App
+# 포텐데이_과탑카드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 포텐데이는 기획, 디자인, 개발 한 팀으로 10일동안 아이템 선정부터 프로토타입(MVP)까지 완성하는 온라인 해커톤 프로그램입니다.
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+[ 목차 ]
 
-### `npm start`
+[1. 프로젝트 소개](#1.-프로젝트-소개) <br />
+[2. FE 기술 스택](#2.-FE-기술-스택) <br />
+[3. 실행 방법](#3.-실행-방법) <br />
+[4. 데모 영상](#4.-데모-영상) <br />
+[5. 구현 기능](#5.-구현-기능) <br />
+[6. 프로젝트/라우터 구조](#6.-프로젝트/라우터-구조) <br />
+[7. 활동자료(Product Spec)](<#7.-활동자료(Product-Spec)>) <br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 1. 프로젝트 소개
+<p align="center">
+<img src="https://user-images.githubusercontent.com/78922001/229360184-22ab6057-9837-4017-af09-867e2d0f8dac.png">
+</p>
 
-### `npm test`
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 프로젝트 한 줄 요약 : 파일 업로드를 통해 기출/예제 문제를 자동 생성하고, 카드 형식으로 전달하여 학습 경험을 도와주는 웹 서비스
+- 기획 의도 : 고등교육 이후 다양해지는 학습내용으로 인해, 기출문제 등의 학습에 도움이 되는 자료를 이전만큼 받아볼 수 없다는 문제를 해결하고자 했습니다. 과탑카드는 학생들이 온전히 ‘학습’에만 보다 많은 시간을 할애할 수 있도록, 개인 필기 및 학습자료 업로드를 통해 ‘학습가이드’, ‘자신만의 공부노트’를 대신 만들어주는 웹서비스 입니다.
+- 프로젝트 기간 : 2023.03.24 - 04.02 (개발기간 : 4일)
+- 팀원 : FE 1명, BE 1명, 디자인 1명, 기획 1명
 
-### `npm run build`
+<br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. FE 기술 스택
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React, Styled-components, axios, Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `npm run eject`
+### 3. 실행 방법
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+# install
+$ npm run install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# run
+$ npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+MVP 구현만 되어 있어, 계정은 현재 하나의 계정으로 테스트 가능합니다 \*PC뷰만 지원
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br />
 
-## Learn More
+### 4. 데모 영상
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://user-images.githubusercontent.com/78922001/229360214-09ff49a5-b06c-4085-b842-2eb43f1a38cb.mp4
+
+
+<br />
+
+### 5. 구현 기능
+
+- 로그인 및 회원가입
+  - 로그인 여부에 따른 제한 접근 라우팅
+- PDF 파일 업로드 및 기출 카드 생성
+  - PDF 파일 업로드(파일 형식이 다를 경우 reject)
+  - Loading 상태 표기
+- 기출 카드 조회
+  - 기출 문제의 전체 내용 및 답안을 카드형식으로 조회
+- 카드덱 목록 확인 및 삭제
+
+<br />
+
+### 6. 프로젝트/라우터 구조
+
+<details>
+
+<summary>프로젝트 구조</summary>
+
+```
+📦src
+ ┣ 📂api
+ ┃ ┗ 📜cardDeck.ts
+ ┣ 📂components
+ ┃ ┣ 📂CardDeckList
+ ┃ ┃ ┣ 📜CardDeckEmpty.tsx
+ ┃ ┃ ┣ 📜DeckList.tsx
+ ┃ ┃ ┣ 📜DeleteModal.tsx
+ ┃ ┃ ┣ 📜index.tsx
+ ┃ ┃ ┗ 📜PageHeader.tsx
+ ┃ ┣ 📂Common
+ ┃ ┃ ┣ 📜Button.tsx
+ ┃ ┃ ┣ 📜Card.tsx
+ ┃ ┃ ┣ 📜CardDeck.tsx
+ ┃ ┃ ┗ 📜Modal.tsx
+ ┃ ┣ 📂CreateCard
+ ┃ ┃ ┣ 📜FileDropZone.tsx
+ ┃ ┃ ┣ 📜index.tsx
+ ┃ ┃ ┣ 📜Loading.tsx
+ ┃ ┃ ┗ 📜PrecautionsModal.tsx
+ ┃ ┣ 📂Home
+ ┃ ┃ ┣ 📜CardDeckInfo.tsx
+ ┃ ┃ ┣ 📜index.tsx
+ ┃ ┃ ┗ 📜ServiceInfo.tsx
+ ┃ ┣ 📂Layout
+ ┃ ┃ ┣ 📜Authorization.tsx
+ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┣ 📜index.tsx
+ ┃ ┃ ┗ 📜UserOverlayMenu.tsx
+ ┃ ┣ 📂LogIn
+ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┣ 📂SignUp
+ ┃ ┃ ┗ 📜index.tsx
+ ┃ ┗ 📂View
+ ┃ ┃ ┣ 📜CardAnswer.tsx
+ ┃ ┃ ┣ 📜CardDeckDesc.tsx
+ ┃ ┃ ┣ 📜CardSlider.tsx
+ ┃ ┃ ┗ 📜index.tsx
+ ┣ 📂hooks
+ ┃ ┣ 📜useAuth.ts
+ ┃ ┣ 📜useOverlay.ts
+ ┃ ┣ 📜useRedux.ts
+ ┃ ┗ 📜useRouter.ts
+ ┣ 📂mock
+ ┃ ┗ 📜cardDeckList.ts
+ ┣ 📂pages
+ ┃ ┣ 📜CardDeckListPage.tsx
+ ┃ ┣ 📜CreateCardPage.tsx
+ ┃ ┣ 📜HomePage.tsx
+ ┃ ┣ 📜LogInPage.tsx
+ ┃ ┣ 📜SignUpPage.tsx
+ ┃ ┗ 📜ViewPage.tsx
+ ┣ 📂store
+ ┃ ┣ 📜authSlice.ts
+ ┃ ┗ 📜index.ts
+ ┣ 📂styles
+ ┃ ┣ 📜color.ts
+ ┃ ┣ 📜GlobalStyle.ts
+ ┃ ┣ 📜postion.ts
+ ┃ ┣ 📜text.ts
+ ┃ ┗ 📜z-index.ts
+ ┣ 📂types
+ ┃ ┗ 📜card.ts
+ ┣ 📜App.tsx
+ ┣ 📜index.tsx
+ ┗ 📜router.tsx
+```
+
+</details>
+
+<details>
+<summary>라우터 구조</summary>
+
+- / : 메인화면
+- /create : 카드 생성
+- /cardDeckList : MY 카드덱(카드덱 리스트 조회 및 삭제)
+- /view/:cardDeckId : 문제 카드 조회
+- /login : 로그인
+- /signUp : 회원가입
+
+</details>
+
+<br />
+
+### 7. 활동자료(Product Spec)
+
+[서비스 소개 / Product Spec](https://imaginary-barracuda-03e.notion.site/Product-Spec-08c8a88b800b4e3ca1f6455f822b2c9f)
