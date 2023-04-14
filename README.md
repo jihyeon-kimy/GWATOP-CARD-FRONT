@@ -7,12 +7,11 @@
 [ 목차 ]
 
 [1. 프로젝트 소개](#1.-프로젝트-소개) <br />
-[2. FE 기술 스택](#2.-FE-기술-스택) <br />
+[2. 아키텍쳐](#2.-아키텍쳐) <br />
 [3. 실행 방법](#3.-실행-방법) <br />
-[4. 데모 영상](#4.-데모-영상) <br />
-[5. 구현 기능](#5.-구현-기능) <br />
-[6. 프로젝트/라우터 구조](#6.-프로젝트/라우터-구조) <br />
-[7. 활동자료(Product Spec)](<#7.-활동자료(Product-Spec)>) <br />
+[4. 구현 기능](#4.-구현-기능) <br />
+[5. 프로젝트/라우터 구조](#5.-프로젝트/라우터-구조) <br />
+[6. 데모 영상](#6.-데모-영상) <br />
 
 <br />
 
@@ -27,12 +26,18 @@
 - 기획 의도 : 고등교육 이후 다양해지는 학습내용으로 인해, 기출문제 등의 학습에 도움이 되는 자료를 이전만큼 받아볼 수 없다는 문제를 해결하고자 했습니다. 과탑카드는 학생들이 온전히 ‘학습’에만 보다 많은 시간을 할애할 수 있도록, 개인 필기 및 학습자료 업로드를 통해 ‘학습가이드’, ‘자신만의 공부노트’를 대신 만들어주는 웹서비스 입니다.
 - 프로젝트 기간 : 2023.03.24 - 04.02 (개발기간 : 4일)
 - 팀원 : FE 1명, BE 1명, 디자인 1명, 기획 1명
+- 배포 링크 : [🔗GWATOP CARD](https://jihyeon-kimy.github.io/GWATOP-CARD-FRONT/)
+- 참고 자료 : [서비스 소개 / Product Spec](https://imaginary-barracuda-03e.notion.site/Product-Spec-08c8a88b800b4e3ca1f6455f822b2c9f) , [비사이드 프로젝트 게시 페이지](https://bside.best/projects/detail/P230323055714)
 
 <br />
 
-### 2. FE 기술 스택
+### 2. 아키텍쳐
 
-- React, Styled-components, axios, Redux
+- FE : React, Styled-components, react-router-dom, Redux
+- BE : Django, Docker, Gunicorn, OpenAI, NCP
+
+<img src="https://user-images.githubusercontent.com/78922001/232012033-4cd4642e-57a8-47dc-844c-3deaa4358072.png" width="700"/>
+
 
 <br />
 
@@ -46,32 +51,25 @@ $ npm run install
 $ npm start
 ```
 
-MVP 구현만 되어 있어, 계정은 현재 하나의 계정으로 테스트 가능합니다 \*PC뷰만 지원
+MVP 구현을 목표로 제작되어, 현재 하나의 계정으로 테스트 가능합니다 \*PC뷰만 지원
 
 <br />
 
-### 4. 데모 영상
-
-
-https://user-images.githubusercontent.com/78922001/229360214-09ff49a5-b06c-4085-b842-2eb43f1a38cb.mp4
-
-
-<br />
-
-### 5. 구현 기능
+### 4. 구현 기능
 
 - 로그인 및 회원가입
   - 로그인 여부에 따른 제한 접근 라우팅
 - PDF 파일 업로드 및 기출 카드 생성
-  - PDF 파일 업로드(파일 형식이 다를 경우 reject)
-  - Loading 상태 표기
+  - 드래그 앤 드롭 PDF 파일 업로드 (파일 형식이 다를 경우 reject)
+  - 기출카드 생성 중 Loading 상태 표기 후, 카드덱 목록 페이지로 이동
 - 기출 카드 조회
-  - 기출 문제의 전체 내용 및 답안을 카드형식으로 조회
+  - 기출 문제를 플래시 카드 형식으로 조회 
+  - 문항에 따른 답안 확인
 - 카드덱 목록 확인 및 삭제
 
 <br />
 
-### 6. 프로젝트/라우터 구조
+### 5. 프로젝트/라우터 구조
 
 <details>
 
@@ -162,6 +160,9 @@ https://user-images.githubusercontent.com/78922001/229360214-09ff49a5-b06c-4085-
 
 <br />
 
-### 7. 활동자료(Product Spec)
 
-[서비스 소개 / Product Spec](https://imaginary-barracuda-03e.notion.site/Product-Spec-08c8a88b800b4e3ca1f6455f822b2c9f)
+### 6. 데모 영상
+
+
+https://user-images.githubusercontent.com/78922001/229360214-09ff49a5-b06c-4085-b842-2eb43f1a38cb.mp4
+
